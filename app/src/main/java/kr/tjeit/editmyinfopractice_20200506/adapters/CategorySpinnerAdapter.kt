@@ -1,5 +1,6 @@
 package kr.tjeit.editmyinfopractice_20200506.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,17 @@ class CategorySpinnerAdapter : ArrayAdapter<Category>() {
             tempRow = inf.inflate(R.layout.category_list_item, null)
         }
 
+
         val row = tempRow!!
+
+        val colorTxt = row.findViewById<ImageView>(R.id.colorTxt)
+        val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
+
+        titleTxt.text = data.title
+
+        colorTxt.setBackgroundColor(Color.parseColor(data.color))
+
+
 
         return row
     }
