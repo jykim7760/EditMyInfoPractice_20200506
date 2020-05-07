@@ -58,7 +58,7 @@ class MainActivity : BaseActivity() {
 //                        캘린더로 저장된 가입일시 -> 스트링으로 변환.
 //                        텍스트뷰에 대입
 
-                        val printSdf = SimpleDateFormat("yyyy년 M월 d일")
+                        val printSdf = SimpleDateFormat("yyyy년 M월 d일 (E)")
 
                         signUpDateTxt.text = printSdf.format(userObj.createdAt.time)
 
