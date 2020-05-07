@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kr.tjeit.editmyinfopractice_20200506.datas.User
 import kr.tjeit.editmyinfopractice_20200506.utils.ServerUtil
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 
 class MainActivity : BaseActivity() {
 
@@ -53,6 +54,14 @@ class MainActivity : BaseActivity() {
                         nameEdt.setText(userObj.name)
                         phoneNumEdt.setText(userObj.phoneNum)
                         memoEdt.setText(userObj.memo)
+
+//                        캘린더로 저장된 가입일시 -> 스트링으로 변환.
+//                        텍스트뷰에 대입
+
+                        val printSdf = SimpleDateFormat("yyyy년 M월 d일")
+
+                        signUpDateTxt.text = printSdf.format(userObj.createdAt.time)
+
 
                     }
 
