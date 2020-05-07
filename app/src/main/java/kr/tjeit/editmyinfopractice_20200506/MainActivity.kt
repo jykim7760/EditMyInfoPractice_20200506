@@ -30,6 +30,8 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
+        getCategoryListFromServer()
+
         categoryAdapter = CategorySpinnerAdapter(mContext, R.layout.category_list_item, categoryList)
         categorySpinner.adapter = categoryAdapter
 
@@ -83,6 +85,42 @@ class MainActivity : BaseActivity() {
 
 
 
+
+    }
+
+    fun  getCategoryListFromServer(){
+
+        ServerUtil. getRequestUserCategory(mContext, object : ServerUtil.JsonResponseHandler)
+        override fun onResponse(json : JSONObject){
+
+
+            if ( code == 200){
+                val data = json.getJSONObject("data")
+                val userCategories = data.getJSONArray("user_catecories")
+
+                for (i in 0..userCategories.length()-1){
+
+                    val uc = userCategories.getJSONObject(i)
+
+                    val categoryObj = Category.getCategoryFromJson(uc)
+
+                    categoryList.add(categoryObj)
+
+                }
+//                어답터의 ArrayList 에 내용 변화 ( 객체 추가)
+
+                runOnUiThread{
+
+                    categoryAdapter.notifyDataSetChanged()
+
+                }
+
+
+
+
+            }
+
+        }
 
     }
 
