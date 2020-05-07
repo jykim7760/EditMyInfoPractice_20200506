@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.tjeit.editmyinfopractice_20200506.adapters.CategorySpinnerAdapter
+import kr.tjeit.editmyinfopractice_20200506.datas.Category
 import kr.tjeit.editmyinfopractice_20200506.datas.User
 import kr.tjeit.editmyinfopractice_20200506.utils.ServerUtil
 import org.json.JSONObject
@@ -11,6 +13,8 @@ import java.text.SimpleDateFormat
 
 class MainActivity : BaseActivity() {
 
+    lateinit var  categoryAdapter : CategorySpinnerAdapter
+    val categoryList = ArrayList()
     lateinit var token:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +29,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        categoryAdapter = CategorySpinnerAdapter(mContext, R.layout.category_list_item, categoryList)
+        categorySpinner.adapter = categoryAdapter
+
 
         token = intent.getStringExtra("token")!!
 
